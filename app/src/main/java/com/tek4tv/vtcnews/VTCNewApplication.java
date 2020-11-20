@@ -10,7 +10,7 @@ import com.tek4tv.vtcnews.network.ApiUtil;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class VTCNowApplication extends Application {
+public class VTCNewApplication extends Application {
     private static ApiService sApiService;
     @Override
     public void onCreate() {

@@ -30,6 +30,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+
 import com.tek4tv.vtcnews.common.Common;
 import com.tek4tv.vtcnews.location.LocationCustom;
 import com.tek4tv.vtcnews.location.LocationTracker;
@@ -67,22 +68,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rxPermissions = new RxPermissions(this);
-     //   FirebaseInstanceId.getInstance().getInstanceId()
-      //          .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-       //             @Override
-       //             public void onComplete(@NonNull Task<InstanceIdResult> task) {
-       //                 if (!task.isSuccessful()) {
-       //                     Log.w("test", "getInstanceId failed", task.getException());
-        //                    return;
-        //                }
-
-                        // Get new Instance ID token
-        //                String token = task.getResult().getToken();
-
-
-            //            Log.d("token", token);
-           //         }
-         //       });
         locationTracker = new LocationTracker(getApplicationContext(), this);
         rxPermissions
                 .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -117,35 +102,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         wv = (WebView) findViewById(R.id.webView);
         urlWv = Common.URL;
 
-        // truong hop background
-        if (getIntent().getExtras() != null) {
-            for (String key : getIntent().getExtras().keySet()) {
-                if (key != null && !key.equals("") && key.equals("url")) {
-                    String value = getIntent().getExtras().get(key).toString();
-                    if (value != null && !value.equals("") && value.contains("vtcnow.vn")) {
-                            value = value.replace("https://vtcnow.vn/", "");
-                        urlWv = urlWv + "#" + value;
-                    }
-                    break;
-                }
-            }
-        }
-        // truong hop notify foreground
-        String mappp = this.getIntent().getStringExtra("mapp");
-        if (mappp != null && !mappp.equals("")) {
-            if (mappp != null && !mappp.equals("") && mappp.contains("vtcnow.vn")) {
-                mappp = mappp.replace("https://vtcnow.vn/", "");
-                urlWv = urlWv + "#" + mappp;
-            }
-        }
-        Uri data = this.getIntent().getData();
-        if (data != null && data.isHierarchical()) {
-            String uri = this.getIntent().getDataString();
-            if (uri != null && !uri.equals("") && uri.contains("vtcnow.vn")) {
-                uri = uri.replace("https://vtcnow.vn/", "");
-                urlWv = urlWv + "#" + uri;
-            }
-        }
+
         setUpWV();
 
         wv.setWebViewClient(new WebViewClient() {
@@ -460,9 +417,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, "VTC News");
-                String shareMessage = "";
-                shareMessage = shareMessage + "\n" + message;
-                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, message);
                 startActivity(Intent.createChooser(shareIntent, ""));
             } catch (Exception e) {
             }

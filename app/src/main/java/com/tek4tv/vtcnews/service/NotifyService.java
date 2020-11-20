@@ -13,7 +13,6 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.tek4tv.vtcnews.MainActivity;
-import com.tek4tv.vtcnews.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -58,32 +57,32 @@ public class NotifyService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String channelId = getString(R.string.default_notification_channel_id);
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, channelId)
-                        .setColor(getResources().getColor(R.color.colorAccent))
-                        .setSmallIcon(R.mipmap.ic_app)
-                        .setContentTitle(messageBody.get("title"))
-                        .setContentText(messageBody.get("body"))
-                        .setLargeIcon(getBitmapFromURL(messageBody.get("image")))
-                        .setAutoCancel(true)
-                        .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent)
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody.get("body")));
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Since android Oreo notification channel is needed.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId,
-                    "VTC News",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//        String channelId = getString(R.string.default_notification_channel_id);
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        NotificationCompat.Builder notificationBuilder =
+//                new NotificationCompat.Builder(this, channelId)
+//                        .setColor(getResources().getColor(R.color.colorAccent))
+//                        .setSmallIcon(R.mipmap.ic_app)
+//                        .setContentTitle(messageBody.get("title"))
+//                        .setContentText(messageBody.get("body"))
+//                        .setLargeIcon(getBitmapFromURL(messageBody.get("image")))
+//                        .setAutoCancel(true)
+//                        .setSound(defaultSoundUri)
+//                        .setContentIntent(pendingIntent)
+//                        .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody.get("body")));
+//
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        // Since android Oreo notification channel is needed.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel channel = new NotificationChannel(channelId,
+//                    "VTC News",
+//                    NotificationManager.IMPORTANCE_DEFAULT);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
     @Override
     public void onNewToken(String token) {
