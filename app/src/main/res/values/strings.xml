@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VTC Now</string>
+    <string name="app_name">VTC News</string>
     <string name="load_failed">Tải thông tin thất bại, nhấn vào đây để thử lại </string>
     <string name="title">Title</string>
     <string name="default_notification_channel_id">28</string>

@@ -422,5 +422,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             } catch (Exception e) {
             }
         }
+
+        @JavascriptInterface
+        public void openUrl(String message) {
+            try {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+                startActivity(browserIntent);
+            } catch (Exception e) {
+            }
+        }
+
+
     }
 }

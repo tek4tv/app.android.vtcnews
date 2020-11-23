@@ -57,7 +57,7 @@
                     android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content">
-                <com.accedo.vtc.playerads.VideoPlayerAd
+                <com.tek4tv.vtcnews.playerads.VideoPlayerAd
                         android:id="@+id/sampleVideoPlayer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
